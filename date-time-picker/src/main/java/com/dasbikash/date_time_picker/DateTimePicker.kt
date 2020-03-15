@@ -28,6 +28,7 @@ class DateTimePicker(
         timePicker.currentMinute = dateTime.get(Calendar.MINUTE)
         calView.visibility = View.VISIBLE
         timePicker.visibility = View.GONE
+        timePicker.setIs24HourView(true)
 
         calView.setOnDateChangeListener(object : CalendarView.OnDateChangeListener{
             override fun onSelectedDayChange(
