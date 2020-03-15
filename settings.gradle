@@ -1,0 +1,2 @@
+rootProject.name='Date Time Picker'
+include ':date-time-picker'
