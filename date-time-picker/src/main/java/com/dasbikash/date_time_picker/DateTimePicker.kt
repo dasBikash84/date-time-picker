@@ -23,7 +23,9 @@ class DateTimePicker(
         val view = LayoutInflater.from(context).inflate(R.layout.view_date_time_picker,null,false)
         val calView = view.findViewById<CalendarView>(R.id.date_picker)
         val timePicker = view.findViewById<TimePicker>(R.id.time_picker)
-
+        calView.date = dateTime.time.time
+        timePicker.currentHour = dateTime.get(Calendar.HOUR_OF_DAY)
+        timePicker.currentMinute = dateTime.get(Calendar.MINUTE)
         calView.visibility = View.VISIBLE
         timePicker.visibility = View.GONE
 
