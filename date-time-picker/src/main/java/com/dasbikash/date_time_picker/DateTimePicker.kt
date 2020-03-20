@@ -9,14 +9,13 @@ import java.util.*
 
 class DateTimePicker(
     date:Date?=null,
+    val minDate:Date?=null,
+    val maxDate:Date?=null,
     val doOnDateTimeSet:(Date)->Unit
 ){
     private val dateTime:Calendar
     init {
-        dateTime = Calendar.getInstance()
-        if (date != null){
-            dateTime.time = date
-        }
+        dateTime = date?.toCalander() ?: Calendar.getInstance()
     }
 
     fun display(context: Context){
@@ -24,6 +23,8 @@ class DateTimePicker(
         val calView = view.findViewById<CalendarView>(R.id.date_picker)
         val timePicker = view.findViewById<TimePicker>(R.id.time_picker)
         calView.date = dateTime.time.time
+        minDate?.let { calView.minDate = it.time }
+        maxDate?.let { calView.maxDate = it.time }
         timePicker.currentHour = dateTime.get(Calendar.HOUR_OF_DAY)
         timePicker.currentMinute = dateTime.get(Calendar.MINUTE)
         calView.visibility = View.VISIBLE
@@ -60,4 +61,10 @@ class DateTimePicker(
             }
         ))
     }
+}
+
+internal fun Date.toCalander():Calendar{
+    val cal = Calendar.getInstance()
+    cal.time = this
+    return cal
 }
